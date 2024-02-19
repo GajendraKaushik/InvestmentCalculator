@@ -1,22 +1,6 @@
 import { calculateInvestmentResults } from "../util/investment";
 import { useState } from "react";
-function Calculator_input() {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1500,
-    expectedReturn: 10,
-    duration: 10,
-  });
-  function handelChange(initialIdentifiyer, newValue) {
-    setUserInput((prevUserInput) => {
-      return {
-        ...userInput,
-        [initialIdentifiyer]: newValue,
-      };
-    });
-  }
-
-
+function Calculator_input({userInput, onchange}) {
   return (
     <div id="user-input">
       <div className="input-group">
@@ -25,7 +9,7 @@ function Calculator_input() {
           <input
             type="number"
             onChange={(event) =>
-              handelChange("initialInvestment", event.target.value)
+                onchange("initialInvestment", event.target.value)
             }
             value={userInput.initialInvestment}
             required
@@ -37,7 +21,7 @@ function Calculator_input() {
             id="an"
             type="number"
             onChange={(event) =>
-                handelChange("annualInvestment", event.target.value)
+                onchange("annualInvestment", event.target.value)
               }
             value={userInput.annualInvestment}
             required
@@ -51,7 +35,7 @@ function Calculator_input() {
             id="er"
             type="number"
             onChange={(event) =>
-                handelChange("expectedReturn", event.target.value)
+                onchange("expectedReturn", event.target.value)
               }
             value={userInput.expectedReturn}
             required
@@ -63,7 +47,7 @@ function Calculator_input() {
             id="D"
             type="number"
             onChange={(event) =>
-                handelChange("duration", event.target.value)
+                onchange("duration", event.target.value)
               }
             value={userInput.duration}
             required
